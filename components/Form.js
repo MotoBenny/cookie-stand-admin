@@ -1,6 +1,5 @@
 export default function Form(props) {
   return (
-    // <form className='flex flex-col w-1/2 p-2 bg-green-200 rounded-md my-10' onSubmit={props.onSubmit}>
     <form className='grid grid-rows-2 w-1/2 p-2 bg-emerald-300 rounded-md my-10' onSubmit={props.onSubmit}>
       <h1 className='flex justify-center py-3 text-2xl'>Create Cookie Stand</h1>
       <div className="grid col-span-2">
