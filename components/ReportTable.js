@@ -1,5 +1,5 @@
 import { loadGetInitialProps } from 'next/dist/shared/lib/utils';
-import { hours } from '../pages/data'
+
 
 export default function ReportTable({ locJson }) {
   function calcHourlyTotal() {

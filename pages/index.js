@@ -1,14 +1,30 @@
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import Form from '../components/Form'
-import ReportTable from '../components/ReportTable';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
+import Form from '../components/Form';
+import LoginForm from '../components/LoginForm';
 import { useState } from 'react';
+import { useAuth } from '../contexts/auth';
 
 
 
 export default function Home() {
   const hourly_sales = [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
   const [locJson, setJson] = useState([])
+
+  const { user, login, logout } = useAuth();
+
+  const [ userName, setUserName ] = useState(false);
+
+  async function handleLogin(username, password) {
+
+    setUserName(username)
+    login(username, password)
+  }
+
+  function handleLogout() {
+    logout()
+    setUserName(false)
+  }
 
   function StandHandler(event) {
     event.preventDefault();
@@ -24,16 +40,15 @@ export default function Home() {
   }
 
 
-
   return (
-    <div>
+    <>
       <Header />
       <main className='bg-emerald-100 flex flex-col items-center'>
-
-        <Form onSubmit={StandHandler} />
-        <ReportTable locJson={locJson} />
+      { userName ? <Form onsubmit={StandHandler} user={userName} logout={handleLogout} locJson={locJson} />: <LoginForm onLogin={handleLogin}/> }
+      
       </main>
       <Footer copyright=' 2022' />
-    </div>
+    </>
   )
 }
+
